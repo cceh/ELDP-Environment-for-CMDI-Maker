@@ -107,7 +107,7 @@ var eldp_environment = (function(){
 					readFileAsJSON(file, function(json){
 						console.log(json);
 						var fixed_json = my.repair(json);
-						APP.save_file(JSON.stringify(fixed_json), new_filename, "application/json");
+						APP.saveTextfile(JSON.stringify(fixed_json), new_filename, "application/json");
 					});
 				}
 			}

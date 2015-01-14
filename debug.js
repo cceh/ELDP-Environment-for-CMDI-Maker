@@ -16,6 +16,7 @@ var source_scripts = [
 	"src/js/eldp_sessions.js",
 	"src/js/eldp_sessions_rendering.js",
 	"src/js/eldp_output.js",
+	"src/js/eldp_repair.js"
 ];
 
 var source_stylesheet = "src/css/layout-eldp.css";

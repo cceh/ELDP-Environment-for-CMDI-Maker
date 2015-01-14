@@ -23,7 +23,7 @@ var eldp_environment = (function(){
 	my.name = "eldp";
 	my.id = "eldp";
 	my.title = "ELDP";
-	my.version = "1.0.0";
+	my.version = "1.0.2";
 	my.min_cmdi_maker_version = "2.0.9";
 	
 	my.workflow = [];
@@ -86,20 +86,31 @@ var eldp_environment = (function(){
 				name: "metadata_creator",
 				id: "metadata_creator",
 				value: "CMDI Maker User"
-			}/*,
-			{
+			},
+			/*{
 				title: "Export Actors as JSON",
 				onclick: function (){actor.export_actors();},
 				type: "link"
-			},
+			},*/
 			{
-				title: "Import Actors from JSON or IMDI",
-				description: "Please import UTF-8 encoded files only!",
+				title: "Repair broken CMP file",
 				type: "file",
-				file_input_id: "actors_file_input",
-				file_input_name: "actors_file_input",
-				onchange: function () {actor.import_actors();}
-			}*/
+				file_input_id: "cmp_repair_input",
+				file_input_name: "cmp_repair_input",
+				onchange: function (event) {
+				
+					var file = event.target.files[0];
+					console.log(file);
+					
+					var new_filename = strings.removeEndingFromFilename(file.name) + "_repaired.cmp";					
+					
+					readFileAsJSON(file, function(json){
+						console.log(json);
+						var fixed_json = my.repair(json);
+						APP.save_file(JSON.stringify(fixed_json), new_filename, "application/json");
+					});
+				}
+			}
 		];
 	};
 	

@@ -134,14 +134,14 @@ eldp_environment.workflow[1] = (function(){
 	
 	my.getSaveData = function(){
 	
-		var object = {};
+		my.saveActivePerson();	
 		
-		my.saveActivePerson();
-		
-		object.persons = my.persons.getState();
-		
-		return object;
+		var object = {	
+			persons: my.persons.getState()
+		};
 	
+		return object;
+		
 	};
 	
 	
@@ -170,8 +170,21 @@ eldp_environment.workflow[1] = (function(){
 	
 	my.recall = function(data){
 	
-		if (data.persons){
+		//check if legacy data structure and convert
+		if (data.persons && Array.isArray(data.persons) == true){
+		
+			for (var s = 0; s < data.persons.length; s++){
+			
+				my.persons.add(data.persons[s]);
+			
+			}
+		
+		}
+		
+		else {			
+			
 			my.persons.setState(data.persons);
+			
 		}
 		
 		my.refresh();

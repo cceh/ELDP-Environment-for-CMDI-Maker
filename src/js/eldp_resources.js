@@ -203,8 +203,24 @@ eldp_environment.workflow[0] = (function(){
 	
 	
 	my.recall = function(data){
+
+		//check if legacy data structure and convert
+		if (data && Array.isArray(data) == true){
+		
+			for (var s = 0; s < data.length; s++){
+			
+				my.resources.add(data[s]);
+			
+			}
+		
+		}
+		
+		else {			
+			
+			my.resources.setState(data);
+			
+		}
 	
-		my.resources.setState(data);
 		my.refresh();
 	
 	};

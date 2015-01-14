@@ -94,11 +94,23 @@ eldp_environment.workflow[2] = (function() {
 		}
 		
 		//check for legacy data and convert
+		if (Array.isArray(data.bundles) == true){
+		
+			for (var s = 0; s < data.bundles.length; s++){
+			
+				my.bundles.add(data.bundles[s]);
+			
+			}
+		
+		}
+		
+		else {			
+			
+			my.bundles.setState(data);
+			
+		}
 		
 		
-		
-		my.bundles.setState(data.bundles);
-
 		if (data.person_id_counter){
 			my.person_id_counter = data.person_id_counter;
 		}

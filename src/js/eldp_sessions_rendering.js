@@ -315,7 +315,7 @@ eldp_environment.workflow[2].render = (function() {
 			my.lang_id_counter = lang_id + 1;
 		}
 		
-		console.log("Rendering lang with id " + lang_id);
+		//console.log("Rendering lang with id " + lang_id);
 		
 		var element_id = element_id_prefix + lang_id + "_div";
 	
@@ -360,7 +360,7 @@ eldp_environment.workflow[2].render = (function() {
 		);
 		line3.push(l("bundle", "working_language"));
 		
-		console.log(line3);
+		//console.log(line3);
 
 		box_content.push(line2, line3);
 		

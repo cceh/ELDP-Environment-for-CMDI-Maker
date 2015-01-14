@@ -514,7 +514,7 @@ eldp_environment.workflow[2].render = (function() {
 		);
 		*/
 		
-		var select = APP.GUI.makeSelect(div,
+		var select = APP.GUI.openVocabulary(div,
 			undefined, "person_in_bundle_"+id+"_role_input",
 			"person_in_bundle_"+id+"_role_input", 1,
 			[
@@ -523,9 +523,8 @@ eldp_environment.workflow[2].render = (function() {
 				"Participant","Performer","Photographer","Recorder","Researcher","Research_participant",
 				"Responder","Signer","Singer","Speaker","Sponsor","Transcriber","Translator"
 			],
-			role_display, undefined
+			role_display, undefined, "person_role_input"
 		);
-		select.className = "person_role_input";
 		
 		my.refreshPersonName(bundle, id);
 		

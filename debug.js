@@ -23,5 +23,3 @@ var source_stylesheet = "src/css/layout-eldp.css";
 
 addFiles(source_scripts, url_prefix);
 addFiles(source_stylesheet, url_prefix);
-
-

@@ -64,7 +64,7 @@ eldp_environment.workflow[3] = (function (){
 		//all bundles must have proper name
 		if (!bundle.areAllBundlesProperlyNamed()){
 			APP.view(bundle);
-			APP.alert(l("output", "bundles_must_have_proper_name") + my.parent.not_allowed_chars);
+			APP.alert(l("output", "bundles_must_have_proper_name"));
 			return;
 		}
 		

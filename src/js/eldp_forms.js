@@ -263,8 +263,8 @@ eldp_environment.person_form = {
 					type: "year"
 				},
    				{
-					heading: "Sex",
-					name: "sex",
+					heading: "Gender",
+					name: "gender",
 					type: "select",
 					vocabulary: ["Unknown","Unspecified","Female","Male"],
 					default_value: "Unspecified"

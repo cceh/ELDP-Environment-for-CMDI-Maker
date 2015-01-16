@@ -52,6 +52,12 @@ eldp_environment.repair = function (broken_json){
 			pers.languages.actor_languages = [];
 			log("person languages undefined! turning it into an empty array");
 		}
+		
+		if (pers.sex){
+		
+			pers.gender = pers.sex;
+		
+		}
 	
 	});
 	

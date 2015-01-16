@@ -106,13 +106,17 @@ eldp_environment.workflow[2] = (function() {
 		
 		else {			
 			
-			my.bundles.setState(data);
+			my.bundles.setState(data.bundles);
 			
 		}
 		
 		
 		if (data.person_id_counter){
 			my.person_id_counter = data.person_id_counter;
+		}
+		
+		if (data.lang_id_counter){
+			my.lang_id_counter = data.lang_id_counter;
 		}
 		
 		my.refresh();

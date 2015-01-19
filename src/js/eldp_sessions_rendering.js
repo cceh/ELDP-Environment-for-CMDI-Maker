@@ -319,11 +319,16 @@ eldp_environment.workflow[2].render = (function() {
 		
 		var element_id = element_id_prefix + lang_id + "_div";
 	
-		var box_content = [];
-		box_content.push("ISO639-3 Code: " + BLO.code);
+		var box = APP.GUI.FORMS.redBox(g(element_id_prefix + "display"), element_id, "bundle_language_entry", "", function(num, num2, num3){
+			return function(){
+				actions.removeLanguage(num, num2, num3);
+			};
+		}(bundle_id, lang_id, element_id));
 		
-		var line2 = [];
-		line2.push(l("bundle", "name") + ": ");
+		
+		box.content.innerHTML += "ISO639-3 Code: " + BLO.code;
+		dom.br(box.content);
+		box.content.innerHTML += l("bundle", "name") + ": ";
 		
 		
 		//If lang type is local and name has not been specified yet, put a message there
@@ -331,44 +336,30 @@ eldp_environment.workflow[2].render = (function() {
 
 			var textInputValue = (BLO.name !== "") ? BLO.name : l("bundle", "specify_local_used_language_name");
 			
-			line2.push(
-				dom.textInput(
-					undefined, element_id_prefix + lang_id + "_name_input", "eldp_bundle_lang_name_input", "",
-					textInputValue
-				)
+			dom.textInput(
+				box.content, element_id_prefix + lang_id + "_name_input", "eldp_bundle_lang_name_input", "", textInputValue
 			);
 			
 		}
 		
 		else {
 			
-			line2.push(BLO.name);
+			box.content.innerHTML += BLO.name;
 			
 		}
 		
-		//dom.spanBR(div,"","", "Country ID: " + BLO.country_code);
+		dom.br(box.content);
 		
-		var line3 = [];
+		var cb = dom.checkbox(box.content, element_id_prefix + lang_id + "_content_language", "", "", BLO.content_language);
+		cb.title = l("bundle", "content_language_hover");
+		var span = dom.span(box.content, "", "", l("bundle", "content_language") + "  ");
+		span.title = l("bundle", "content_language_hover");
 		
-		line3.push(
-			dom.checkbox(undefined, element_id_prefix + lang_id + "_content_language", "", "", BLO.content_language)
-		);
-		line3.push(l("bundle", "content_language") + "  ");
+		cb = dom.checkbox(box.content, element_id_prefix + lang_id + "_working_language", "", "", BLO.working_language);
+		cb.title = l("bundle", "working_language_hover");
+		span = dom.span(box.content, "", "", l("bundle", "working_language"));
+		span.title = l("bundle", "working_language_hover");
 		
-		line3.push(
-			dom.checkbox(undefined, element_id_prefix + lang_id + "_working_language", "", "", BLO.working_language)
-		);
-		line3.push(l("bundle", "working_language"));
-		
-		//console.log(line3);
-
-		box_content.push(line2, line3);
-		
-		APP.GUI.FORMS.redBox(g(element_id_prefix + "display"), element_id, "bundle_language_entry", box_content, function(num, num2, num3){
-			return function(){
-				actions.removeLanguage(num, num2, num3);
-			};
-		}(bundle_id, lang_id, element_id));
 	};
 	
 	//refreshes the name of a person (by id of person_in_bundle) in a specific bundle
@@ -568,29 +559,30 @@ eldp_environment.workflow[2].render = (function() {
 	
 	my.renderUCRS = function(parent, element_id_prefix, urcs){
 	
+		var span = dom.span(parent, element_id_prefix + "oURCS");
+		span.title = l("bundle", "oURCS_description");
 	
-	
-		var cb_u = dom.input(parent, element_id_prefix+"u", "", "", "checkbox", "u");
-		dom.span(parent, "", "", "U");
+		var cb_u = dom.input(span, element_id_prefix+"u", "", "", "checkbox", "u");
+		dom.span(span, "", "", "U");
 		if (urcs.u === true) {
 			cb_u.checked = true;
 		}
 		
 		
-		var cb_r = dom.input(parent, element_id_prefix+"r", "", "", "checkbox", "r");
-		dom.span(parent, "", "", "R");
+		var cb_r = dom.input(span, element_id_prefix+"r", "", "", "checkbox", "r");
+		dom.span(span, "", "", "R");
 		if (urcs.r === true) {
 			cb_r.checked = true;
 		}
 		
-		var cb_c = dom.input(parent, element_id_prefix+"c", "", "", "checkbox", "c");
-		dom.span(parent, "", "", "C");
+		var cb_c = dom.input(span, element_id_prefix+"c", "", "", "checkbox", "c");
+		dom.span(span, "", "", "C");
 		if (urcs.c === true) {
 			cb_c.checked = true;
 		}
 		
-		var cb_s = dom.input(parent, element_id_prefix+"s", "", "", "checkbox", "s");
-		dom.span(parent, "", "", "S");
+		var cb_s = dom.input(span, element_id_prefix+"s", "", "", "checkbox", "s");
+		dom.span(span, "", "", "S");
 		if (urcs.s === true) {
 			cb_s.checked = true;
 		}

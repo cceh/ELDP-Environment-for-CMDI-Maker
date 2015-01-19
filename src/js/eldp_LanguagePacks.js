@@ -167,7 +167,9 @@ eldp_environment.languages[0] = {
 		specify_local_used_language_name: "Specify local used language name",
 		subject_language: "Subject Language",
 		content_language: "Content Language",
+		content_language_hover: "A language that is used by the participants in the recording to communicate with one another and to express communicative content. In elicitation sessions, content language refers to the language that is under investigation, for example if English words are used to elicit Ikaan words, Ikaan is the content language.",
 		working_language: "Working Language",
+		working_language_hover: "A language that is used in the materials in the bundle as a meta language, for example a language that speech is translated into as in a conversation in Ikaan that is translated into Yoruba and English. In such as case, both Yoruba and English would be entered under Languages as working languages, even if no-one in the recording speaks any Yoruba or English. In elicitation sessions, working language refers to the language that is used to elicit data, for example if English words are used to elicit Ikaan words, English is the working language.",
 		really_erase_bundle: "Really?<br>You want to erase a whole bundle? Are you sure about that?",
 		object: "Object",
 		file_name: "File Name",
@@ -179,6 +181,7 @@ eldp_environment.languages[0] = {
 		from_where_to_where: "From where to where",
 		metadata_copied: "Metadata copied",
 		bundle_title_taken_from_eaf: "Bundle title has been taken from EAF file name, since bundle has not been manually named yet.",
+		oURCS_description: "The letters define access to each file at ELAR. Choose between the categories U (for all ELAR users), R (for ELAR users who are researchers), C (for ELAR users who are members of the community represented in the deposit) and S (for ELAR users who been approved of as subscribers to the deposit by the depositor.",
 
 	},
 	

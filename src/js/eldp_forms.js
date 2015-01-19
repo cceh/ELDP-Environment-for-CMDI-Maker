@@ -29,30 +29,31 @@ eldp_environment.bundle_form = {
 					heading: "Title",
 					name: "title",
 					type: "text",
-					comment: "An informative title, without abbreviations, given to the Project, Bundle or resource.",
+					comment: "The title of the bundle without any abbreviations, for example Farm walk with Grace Adeola.",
 				},
 				{
 					heading: "ID",
 					name: "id_element",
 					type: "text",
-					comment: "A unique identifier.",
+					comment: "The unique identifier of the bundle, for example the beginning of the file name such as ikaan123 or uruan_dirges234.",
 				},
 				{
 					heading: "Date",
 					name: "date",
 					type: "date",
-					comment: "In general the primary date of the bundle is audio or video date. If this bundle is about written resources only it indicates the creation date of the primary document.",
+					comment: "The date when the primary resource in the bundle was create, for example when audio or video recordings were made or photographs were taken.",
 				},	
 				{
 					heading: "Description",
 					name: "description",
 					type: "textarea",
-					comment: "Here a relevant description referring to the bundle as a whole can be given. Example: A conversation of mother, father and child at the breakfast table.", 
+					comment: "A description of the recordings, the set of photographs, annotation or other types of resources in the bundle. This description should be a reader-friendly text that someone could read in order to understand what was recorded in what situation for what purpose with whom, or what was annotated in which languages with which level of detail.", 
 				},
 				{
 					heading: "Additional Information of Bundle",
 					name: "additional_information",
 					type: "textarea",
+					comment: "Any additional information about the bundle that is considered relevant for the metadata record but that does not fit into any of the other categories."
 				},
 				{
 					heading: "Location",
@@ -63,7 +64,7 @@ eldp_environment.bundle_form = {
 							heading: "Name",
 							name: "name",
 							type: "text",
-							comment: "",
+							comment: "The name of the location where a recording was made or a photo was taken, for example the town or village such as Ikakumo.",
 						},
 						{
 							heading: "Continent",
@@ -72,19 +73,19 @@ eldp_environment.bundle_form = {
 							size: 1,
 							vocabulary: ["Unknown","Unspecified","Africa","Asia","Europe","Australia","Oceania","North-America","Middle-America","South-America"],
 							default_value: "Unspecified",
-							comment: "If the document is about \"the languages of South-America\", only Continent is supposed to be specified.",
+							comment: "The name of the continent where a recording was made or a photo was taken, for example Africa.",
 						},					
 						{
 							heading: "Country",
 							name: "country",
 							type: "text",
-							comment: "",
+							comment: "The name of the country where a recording was made or a photo was taken, for example Nigeria.",
 						},
 						{
 							heading: "Region",
 							name: "region",
 							type: "text",
-							comment: "This element can also be used to describe sub-regions. Examples: europe, the netherlands, gelderland, achterhoek.",
+							comment: "The name of the region, state, or administrative area where a recording was made or a photo was taken, for example Ondo State.",
 						}
 					]
 				},
@@ -108,22 +109,26 @@ eldp_environment.bundle_form = {
 						"Narrative", "Procedural narrative", "Questionnaire", 
 						"Ritual/religious", "Song", "Speech", "Stimuli", "Wordlist"
 					],
-					comment: "The conventionalized discourse types of the content of the bundle."
+					comment: "The genre of a recording, for example, a narrative, a song, an elicitation, …"
 				},
 				{
 					heading: "Keywords",
 					type: "textarea",
-					name: "keywords"
+					name: "keywords",
+					comment: "Terms that describe the content of the bundle in keywords, for example subject agreement, vowel harmony, pottery, children's language, farm walks, or any other useful term. You can also use this category to group related recordings or topics together, for example a series of recordings of farm walks with different people with the keyword farm walks."+
+						"Separate keywords by entering each new keyword in a new line in this cell."
 				},
 				{
 					heading: "Recording Equipment",
 					name: "recording_equipment",
 					type: "textarea",
+					comment: "A list of equipment used to create the recordings. Separate keywords by entering each new keyword in a new line in this cell."
 				},
 				{
 					heading: "Recording Conditions",
 					name: "recording_conditions",
 					type: "textarea",
+					comment: "Information about the recording conditions, for example noise that occurred, or the arrangement in which people were seated."
 				},
 			]
 		},
@@ -131,6 +136,7 @@ eldp_environment.bundle_form = {
 			title: "Languages",
 			name: "languages",
 			type: "column",
+			comment: "Any of the languages that are used in the bundle, either while the recordings were made or in the transcription, translation and annotation."
 			fields: [
 				{
 					name: "bundle_languages",

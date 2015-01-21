@@ -115,7 +115,7 @@ eldp_environment.bundle_form = {
 					heading: "Keywords",
 					type: "textarea",
 					name: "keywords",
-					comment: "Terms that describe the content of the bundle in keywords, for example subject agreement, vowel harmony, pottery, children's language, farm walks, or any other useful term. You can also use this category to group related recordings or topics together, for example a series of recordings of farm walks with different people with the keyword farm walks."+
+					comment: "Terms that describe the content of the bundle in keywords, for example subject agreement, vowel harmony, pottery, children's language, farm walks, or any other useful term. You can also use this category to group related recordings or topics together, for example a series of recordings of farm walks with different people with the keyword farm walks.\n"+
 						"Separate keywords by entering each new keyword in a new line in this cell."
 				},
 				{
@@ -367,7 +367,7 @@ eldp_environment.person_form = {
 			title: "Languages",
 			name: "languages",
 			type: "column",
-			comment: "This category is used to list all the languages a person speaks, understands or identifies with."+ 
+			comment: "This category is used to list all the languages a person speaks, understands or identifies with.\n"+ 
 				"Often, speakers of endangered languages speak various languages with different degrees of competence, understand languages that they do not actively speak, or identify with the language of their community even though they themselves do not speak it. For example, young ethnic Akaan people in Ikakumo may speak Yoruba natively, speak English a bit because they speak it in school, understand Ebira because their school friends use it, and may say that Ikaan is their language because it is the language of the community even though they themselves are not able to speak it. In such as case, enter all the languages (Yoruba, English, Ebira and Ikaan) for this person.",
 			fields: [
 				{

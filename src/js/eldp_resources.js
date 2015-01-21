@@ -384,10 +384,12 @@ eldp_environment.workflow[0] = (function(){
 		];
 		
 		var radios = dom.makeRadios(div, radio_config, "f_" + options.number + "_status",
-		"f_" + options.number + "_status_", "title", "value", options.status, function(value){
-			my.refreshFileStateValues(options.number);
-			return;
-		});
+			"f_" + options.number + "_status_", "title", "value", options.status, function(value){
+				my.refreshFileStateValues(options.number);
+				return;
+			},
+			[my.l("resources", "stable_description"), my.l("resources", "in_progress_description")]
+		);
 		
 		div.addEventListener("click", function(num){
 			

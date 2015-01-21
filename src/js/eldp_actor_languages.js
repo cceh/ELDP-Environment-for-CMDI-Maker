@@ -119,7 +119,10 @@ eldp_environment.workflow[1].languages = (function (){
 		dom.br(div);
 		//NOW: Additional information
 		
-		APP.GUI.makeTextarea(18, 4, div, my.l("languages", "additional_information"), my.element_id_prefix + ALO.id + "addInfo", my.element_id_prefix + ALO.id + "addInfo" , "className", ALO.additional_information, "");
+		APP.GUI.makeTextarea(
+			18, 4, div, my.l("languages", "additional_information"), my.element_id_prefix + ALO.id + "addInfo", my.element_id_prefix + ALO.id + "addInfo" , "className", ALO.additional_information,
+			my.l("languages", "additional_information_description")
+		);
 		
 	};
 

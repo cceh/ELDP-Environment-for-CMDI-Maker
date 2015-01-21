@@ -63,7 +63,8 @@ eldp_environment.languages[0] = {
 		current_content_languages: "Current Content Languages",
 		content_language_removed__before_lang: "Content Language \"",
 		content_language_removed__after_lang: "\" removed",
-		additional_information: "Additional Information"
+		additional_information: "Additional Information",
+		additional_information_description: "This category gives background information to how competent the person is in the language or how the person is associated with the language, for example spoken native-like, spoken a bit, understood but not spoken, and language of ethnic identification, or any other description that you find useful.",
 		
 	},
 	
@@ -89,8 +90,11 @@ eldp_environment.languages[0] = {
 		fade: "Fade",
 		fade_explanation: "Resources are faded down when they will be included in bundles.<br>"+
 			"This is to prevent selecting them mistakenly.",
-		set_for_all: "Set for all"
-		
+		set_for_all: "Set for all",
+		stable_description: "These tick boxes indicate the current status of file. Not all transcriptions and annotations are necessarily completed when a file first goes into an archive and this category explicitly acknowledges that.\n" +
+			"For example, if a recording has been done and converted and no further work is planned, tick Stable to indicate that the file is not likely to change again. If a transcription is completed and no further work is planned, you can also tick Stable to indicate that the file is not likely to change.",
+		in_progress_description: "These tick boxes indicate the current status of file. Not all transcriptions and annotations are necessarily completed when a file first goes into an archive and this category explicitly acknowledges that.\n" +
+			"For example, if a transcription may still be corrected or another layer of annotation will be added, tick In Progress to indicate that the file is still likely to change."
 	},
 	
 	persons: {

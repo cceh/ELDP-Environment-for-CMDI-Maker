@@ -84,6 +84,26 @@ eldp_environment.eldp_generator = function(data){
 	
 	};
 	
+	var getTimezoneOffset = function(){
+	
+		function pad(number, length){
+			var str = "" + number
+			while (str.length < length) {
+			str = '0'+str
+			}
+			return str;
+		}
+
+		var offset = new Date().getTimezoneOffset()
+		offset = ((offset<0? '+':'-')+ // Note the reversed sign!
+			pad(parseInt(Math.abs(offset/60)), 2) +
+			":" +   //the colon is there because arbil does it too. normally, timezone offsets are like +0100 or -0600
+			pad(Math.abs(offset%60), 2));
+			
+		return offset;
+		
+	};
+	
 	
 	var createBundle = function(bundle, persons, resources){
 		
@@ -103,7 +123,7 @@ eldp_environment.eldp_generator = function(data){
 		
 
 		//CMDI Header
-		insert_cmdi_header(get("metadata_creator"),today()+"+01:00",eldp_bundle_profile);
+		insert_cmdi_header(get("metadata_creator"), today() + getTimezoneOffset(), eldp_bundle_profile);
 		
 		
 		//in resources is nothing, as this is a session and no corpus. attached media files in a cmdi session are further down

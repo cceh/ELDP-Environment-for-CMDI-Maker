@@ -201,7 +201,8 @@ eldp_environment.languages[0] = {
 		spaces_are_not_allowed_either: "Space characters are not allowed either.",
 		persons_must_have_valid_birth_year: "Every person must have a valid birth year!",
 		bundles_must_have_one_language: "Every bundle must have at least one language.",
-		download_zip_archive: "Download ZIP archive"
+		download_zip_archive: "Download ZIP archive",
+		persons_must_have_proper_name: "There are unnamed persons. Please give every person a name first!"
 	},
 	
 	really_overwrite_data: "Do you really want to overwrite data?",

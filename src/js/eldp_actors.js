@@ -594,7 +594,25 @@ eldp_environment.workflow[1] = (function(){
 		return true;	
 	
 	};
+	
 
+	my.areAllPersonsNamed = function(){
+	
+		for (var i = 0; i < my.persons.length; i++){
+		
+			var person = my.persons.get(i);
+		
+			if (person.fullName == "" && person.nameSortBy == "" && person.nameKnownAs == ""){
+				
+				return false;
+			
+			}
+			
+		}		
+		
+		return true;
+	
+	};
 
 	return my;
 	

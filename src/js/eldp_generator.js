@@ -123,7 +123,7 @@ eldp_environment.eldp_generator = function(data){
 		
 
 		//CMDI Header
-		insert_cmdi_header(get("metadata_creator"), today() + getTimezoneOffset(), eldp_bundle_profile);
+		insert_cmdi_header(get("metadata_creator"), dates.today() + getTimezoneOffset(), eldp_bundle_profile);
 		
 		
 		//in resources is nothing, as this is a session and no corpus. attached media files in a cmdi session are further down
@@ -167,7 +167,7 @@ eldp_environment.eldp_generator = function(data){
 		
 		xml.open("StatusInfo");
 		xml.element("Status", "in-progress");  //no input
-		xml.element("ChangeDate", today());
+		xml.element("ChangeDate", dates.today());
 		xml.close("StatusInfo");
 		
 		//No depositor input
@@ -338,7 +338,9 @@ eldp_environment.eldp_generator = function(data){
 			
 			xml.open("BiographicalData");
 			
-			xml.element("BirthYear", (pers.birth_year != "YYYY") ? pers.birth_year : "");
+			if (pers.birth_year != "YYYY" && pers.birth_year != ""){			
+				xml.element("BirthYear", pers.birth_year);
+			}
 			
 			if (pers.death_year != "YYYY" && pers.death_year != ""){
 				xml.element("DeathYear", pers.death_year);
@@ -350,7 +352,7 @@ eldp_environment.eldp_generator = function(data){
 			xml.close("PersonalData");
 			
 			xml.open("Gender");
-			xml.element("GenderIdentification", pers.sex);
+			xml.element("GenderIdentification", pers.gender);
 			xml.element("AdditionalInformation", "");  //No input!
 			xml.close("Gender");
 			
@@ -403,7 +405,7 @@ eldp_environment.eldp_generator = function(data){
 		xml.open("StatusInfo");
 		xml.element("Status", resource.status);
 		
-		xml.element("ChangeDate", today());
+		xml.element("ChangeDate", dates.today());
 		xml.close("StatusInfo");
 		
 		
@@ -473,10 +475,10 @@ eldp_environment.eldp_generator = function(data){
 		xml.open("General");
 		xml.element("Name", resource.name);
 		
-		var date = parseDate(resource.lastModified);
+		var date = dates.parseDate(resource.lastModified);
 		
 		if (date != null){
-			var date_string = dateAsString(date);
+			var date_string = dates.dateAsString(date);
 		}
 		
 		else {

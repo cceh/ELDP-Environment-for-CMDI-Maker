@@ -61,6 +61,14 @@ eldp_environment.workflow[3] = (function (){
 			return;
 		}
 		
+		
+		//all persons must have proper name
+		if (!person.areAllPersonsNamed()){
+			APP.view(person);
+			APP.alert(l("output", "persons_must_have_proper_name"));
+			return;
+		}
+		
 		//all bundles must have proper name
 		if (!bundle.areAllBundlesProperlyNamed()){
 			APP.view(bundle);

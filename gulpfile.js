@@ -55,29 +55,6 @@ gulp.task('imagemin', function() {
 });
 
 
-
-// minify new or changed HTML pages
-gulp.task('htmlminify', function() {
-  //var htmlSrc = './*.html';
-  var htmlSrc = './src/index.html';
-  //because we first replace script and style tags and then replace the file
-  //at the build direction
-  
-  
-  var htmlDst = './build';
- 
-  gulp.src(htmlSrc)
-    .pipe(changed(htmlDst))
-    .pipe(htmlreplace({
-        'css': 'styles/styles.css',
-        'js': 'js/script.js'
-    }))
-    .pipe(minifyHTML())
-    .pipe(gulp.dest(htmlDst))
-	.pipe(notify({message: 'HTML minify task complete'}));
-});
-
-
 // JS concat, strip debugging, minify, and add header
 gulp.task('scripts', function() {
   gulp.src(source_scripts)
@@ -97,7 +74,7 @@ var style_sources = [
 // CSS concat and minify
 gulp.task('styles', function() {
   gulp.src(style_sources)
-    .pipe(concat('eldp_styles.css'))
+    .pipe(concat('eldp_environment.css'))
     .pipe(minifyCSS())
     .pipe(gulp.dest('./build/'))
 	.pipe(notify({message: 'Styles task complete'}));

@@ -450,7 +450,7 @@ eldp_environment.workflow[2] = (function() {
 	
 	
 	my.removeResourceAndRefresh = function(bundle_id, id){
-		my.refreshResource(bundle_id, id);
+		my.removeResource(bundle_id, id);
 		my.refresh();
 	};
 

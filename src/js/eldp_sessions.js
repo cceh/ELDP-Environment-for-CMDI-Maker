@@ -724,6 +724,21 @@ eldp_environment.workflow[2] = (function() {
 		
 	};
 	
+	my.doAllBundlesHaveIDs = function(){
+
+		for (var i = 0; i < my.bundles.length; i++){
+		
+			if (my.bundles.get(i).bundle.id_element === ""){
+			
+				return false;
+			
+			}
+			
+		}
+		
+		return true;
+		
+	};
 	
 	
 	my.doAllBundlesHaveALanguage = function(){

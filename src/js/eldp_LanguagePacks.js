@@ -201,6 +201,7 @@ eldp_environment.languages[0] = {
 		spaces_are_not_allowed_either: "Space characters are not allowed either.",
 		persons_must_have_valid_birth_year: "Every person must have a valid birth year!",
 		bundles_must_have_one_language: "Every bundle must have at least one language.",
+		bundles_must_have_ids: "Every bundle must have an ID.",
 		download_zip_archive: "Download ZIP archive",
 		persons_must_have_proper_name: "There are unnamed persons. Please give every person a name first!"
 	},
@@ -366,6 +367,7 @@ eldp_environment.languages[1] = {
 		not_allowed_chars_are: "Nicht erlaubte Zeichen sind: ",
 		spaces_are_not_allowed_either: "Leerzeichen sind auch nicht erlaubt.",
 		bundles_must_have_one_language: "Jedes Bundle muss mindestens eine Language haben.",
+		bundles_must_have_ids: "Jedes Bundle muss eine ID haben.",
 		persons_must_have_valid_birth_year: "Jede Person muss ein valides Birth Year haben!",
 		download_zip_archive: "ZIP-Archiv herunterladen"
 	},

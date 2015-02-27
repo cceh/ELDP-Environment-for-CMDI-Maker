@@ -77,6 +77,15 @@ eldp_environment.workflow[3] = (function (){
 		}
 		
 		
+		//all bundles must have IDs
+		if (!bundle.doAllBundlesHaveIDs()){
+			APP.view(bundle);
+			APP.alert(l("output", "bundles_must_have_ids"));
+			return;
+		}
+		
+		
+		
 		if (!bundle.doAllBundlesHaveALanguage()){
 			APP.view(bundle);
 			APP.alert(l("output", "bundles_must_have_one_language"));
@@ -135,9 +144,10 @@ eldp_environment.workflow[3] = (function (){
 		
 		for (var s = 0; s < bundle.bundles.length; s++){
 			
-			filename = bundle.bundles.get(s).bundle.title + ".cmdi";
+			filename = bundle.bundles.get(s).bundle.id_element + ".cmdi";
+			
 			APP.GUI.createXMLOutputDIV(xml_window, "CMDI Bundle " + (s+1), "textarea_bundle_"+s,
-			xml_strings.bundles[s],filename, false);
+			xml_strings.bundles[s], filename, false);
 			
 		}
 		

@@ -286,9 +286,16 @@ eldp_environment.eldp_generator = function(data){
 			
 			xml.element("PersonID", "");  //no input
 			
-			//cheap way to calculate person's age, as wished by ELDP
+			//cheap and inaccurate way to calculate person's age, as wished by ELDP
 			if (bundle.bundle.date.year !== "" && bundle.bundle.date.year !== "YYYY"){
-				xml.element("Age_at_Time_of_Recording", bundle.bundle.date.year - pers.birth_year);
+				
+				var age = bundle.bundle.date.year - pers.birth_year;
+				
+				if (typeof age == "number" && !(isNaN(age))){
+				
+					xml.element("Age_at_Time_of_Recording", age);
+					
+				}
 			}
 			
 			xml.element("Role", person_in_bundle.role);
@@ -490,6 +497,30 @@ eldp_environment.eldp_generator = function(data){
 		xml.element("Date", date_string);
 		
 		xml.close("General");
+		
+		
+		switch (file_type){
+			case "ImageFile": {
+				xml.element("ImageInformations", "");
+				break;
+			};
+			
+			case "AudioFile": {
+				xml.element("MediaInformations", "");
+				break;
+			};
+			
+			case "VideoFile": {
+				xml.element("MediaInformations", "");
+				xml.element("ImageInformations", "");
+				xml.element("VideoInformations", "");
+				break;
+			};
+			
+			default: {
+				break;
+			};
+		}
 		
 		xml.element("Checksum", "");
 		

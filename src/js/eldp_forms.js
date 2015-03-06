@@ -35,7 +35,7 @@ eldp_environment.bundle_form = {
 					heading: "ID",
 					name: "id_element",
 					type: "text",
-					comment: "The unique identifier of the bundle, for example the beginning of the file name such as ikaan123 or uruan_dirges234.",
+					comment: "The unique identifier of the bundle, for example the beginning of the file name such as ikaan123 or uruan_dirges234. Like with file names, ID allows only lower case letters a-z (no diacritics, no umlaut, …), digits 0-9, the underscore _ and the hyphen -. No other characters are allowed.",
 				},
 				{
 					heading: "Date",

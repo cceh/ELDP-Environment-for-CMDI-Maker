@@ -23,7 +23,7 @@ var eldp_environment = (function(){
 	my.name = "eldp";
 	my.id = "eldp";
 	my.title = "ELDP";
-	my.version = "1.3";
+	my.version = "1.5";
 	my.min_cmdi_maker_version = "2.0.9";
 	
 	my.workflow = [];
@@ -107,7 +107,7 @@ var eldp_environment = (function(){
 					readFileAsJSON(file, function(json){
 						console.log(json);
 						var fixed_json = my.repair(json);
-						APP.saveTextfile(JSON.stringify(fixed_json), new_filename, "application/json");
+						APP.saveTextfile(JSON.stringify(fixed_json, null, "\t"), new_filename, "application/json");
 					});
 				}
 			}

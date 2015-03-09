@@ -48,10 +48,7 @@ eldp_environment.workflow[0] = (function(){
 		dom.h3(div, "Import Files");
 		var drop_zone = APP.GUI.FORMS.fileDropZone(div, "drop_zone", my.pushFileMetadata);
 		
-		dom.h3(div, "Import File List");
-		var listInput = dom.input(div, "file_list_import_input", "", "", "file");
 		
-		listInput.addEventListener("change", my.handleFileListInputChange, false);
 
 		var usage_table = dom.make(
 			"div","","workspace-usageTable",div,
@@ -65,6 +62,10 @@ eldp_environment.workflow[0] = (function(){
 			'<h4>' + my.l("resources", "fade") + '</h4>'+
 			'<p>' + my.l("resources", "fade_explanation") + '</p>'
 		);
+		
+		dom.h3(div, "Import File List");
+		var listInput = dom.input(div, "file_list_import_input", "", "", "file");
+		listInput.addEventListener("change", my.handleFileListInputChange, false);
 		
 		var file_list_div = dom.make("div","file_list_div","",view);
 		var list = dom.make("div","list","",file_list_div);

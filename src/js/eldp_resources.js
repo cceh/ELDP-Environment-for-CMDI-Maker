@@ -603,8 +603,6 @@ eldp_environment.workflow[0] = (function(){
 		
 		var file_list;  //this is where the file strings will be stored
 		
-		log(file);
-		
 		if (strings.getFileTypeFromFilename(file.name) != "txt"){
 		
 			APP.log("File List must be of type TXT!", "error");

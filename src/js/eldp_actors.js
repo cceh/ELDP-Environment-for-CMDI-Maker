@@ -134,7 +134,7 @@ eldp_environment.workflow[1] = (function(){
 	
 	my.getSaveData = function(){
 	
-		my.saveActivePerson();	
+		my.saveActivePerson("without_refreshing");	
 		
 		var object = {	
 			persons: my.persons.getState()

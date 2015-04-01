@@ -222,7 +222,7 @@ eldp_environment.workflow[2] = (function() {
 	my.createNewBundleWithResources = function(name, expanded, resources){
 	
 		var bundle_object = APP.forms.createEmptyObjectFromTemplate(my.parent.bundle_form);
-		bundle_object.bundle.name = name;
+		bundle_object.bundle.title = name;
 		bundle_object.expanded = expanded;
 
 		my.bundles.add(bundle_object);

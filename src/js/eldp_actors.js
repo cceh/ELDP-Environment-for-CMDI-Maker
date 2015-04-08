@@ -341,12 +341,20 @@ eldp_environment.workflow[1] = (function(){
 		
 		person_to_put.display_name = my.getDisplayName(person_to_put);
 		
-		my.save(person_to_put);
-
+		
+		//refreshing means, that everything gets rendered and painted anew and this would mean that
+		//textareas would reset and scroll to the top. sometimes we don't want that, especially not
+		//with auto save
 		if (flag != "without_refreshing"){
 			my.refresh();
 			my.refreshFormTitle();
+			
+			my.save(person_to_put);
 		}
+		
+		else {
+			my.save(person_to_put, "without_bundle_refresh");		
+		};
 		
 		return person_to_put;
 
@@ -354,13 +362,15 @@ eldp_environment.workflow[1] = (function(){
 	};
 
 
-	my.save = function(person_to_put){
+	my.save = function(person_to_put, flag){
 	//this will always overwrite an existing person
 
 		my.persons.replaceActive(person_to_put);
 
 		//if the person does already exist, check if it is in a bundle and correct the person name in the bundle, if required
-		bundle.updatePersonNameInAllBundles(person_to_put.id);
+		if (flag != "without_bundle_refresh"){
+			bundle.updatePersonNameInAllBundles(person_to_put.id);
+		}
 
 		return person_to_put;
 

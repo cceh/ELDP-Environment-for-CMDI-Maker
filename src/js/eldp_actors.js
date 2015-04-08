@@ -346,10 +346,12 @@ eldp_environment.workflow[1] = (function(){
 		//textareas would reset and scroll to the top. sometimes we don't want that, especially not
 		//with auto save
 		if (flag != "without_refreshing"){
+		
+			my.save(person_to_put);
+		
 			my.refresh();
 			my.refreshFormTitle();
 			
-			my.save(person_to_put);
 		}
 		
 		else {

@@ -523,7 +523,7 @@ eldp_environment.workflow[1] = (function(){
 		else {
 		
 			my.createFormIfNotExistent();
-			my.show(my.persons.getActiveIndex());
+			my.show(my.persons.getPointer());
 		
 			my.gui_list.changeHighlight(my.persons.getActiveIndex());
 			

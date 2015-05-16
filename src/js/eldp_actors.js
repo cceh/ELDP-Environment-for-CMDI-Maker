@@ -82,13 +82,6 @@ eldp_environment.workflow[1] = (function(){
 	};
 	
 	
-	var isEveryPersonNamed = function(){
-	
-		return !(my.persons.isThereAnyItemWhereKeyIsValue("name", ""));
-	
-	};
-	
-	
 	//PUBLIC
 
 	var my = {};
@@ -382,13 +375,6 @@ eldp_environment.workflow[1] = (function(){
 	my.createNewPerson = function(person_to_put){
 	
 		my.saveActivePerson();
-		
-		//after the current person is saved, check, if all persons have a name
-		if (!isEveryPersonNamed()){
-			APP.alert(l("please_give_all_persons_a_name_before_creating_new_one"));
-			return;
-		}
-		
 		
 		//if no person object is given, get the form input
 		if (!person_to_put){

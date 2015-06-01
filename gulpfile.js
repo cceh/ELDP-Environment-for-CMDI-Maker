@@ -67,7 +67,7 @@ gulp.task('scripts', function() {
 
 
 var style_sources = [
-"./src/css/layout-eldp.css",
+	"./src/css/layout-eldp.css",
 ];
 
 

@@ -4,16 +4,17 @@ var gulp = require('gulp');
 // include plug-ins
 var jshint = require('gulp-jshint');
 var changed = require('gulp-changed');
-//var imagemin = require('gulp-imagemin');
-//var minifyHTML = require('gulp-minify-html');
 var concat = require('gulp-concat');
 var stripDebug = require('gulp-strip-debug');
 var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
+var notify = require('gulp-notify');
+
+//var imagemin = require('gulp-imagemin');
+//var minifyHTML = require('gulp-minify-html');
 //var htmlreplace = require('gulp-html-replace');
 //var header = require('gulp-header');
 //var manifest = require('gulp-manifest');
-var notify = require('gulp-notify');
 //var imageResize = require('gulp-image-resize');
 
 

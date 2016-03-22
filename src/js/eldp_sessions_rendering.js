@@ -567,6 +567,7 @@ eldp_environment.workflow[2].render = (function() {
 		if (urcs.u === true) {
 			cb_u.checked = true;
 		}
+		cb_u.addEventListener("click", bundle.refreshVisibleBundlesInArray);
 		
 		
 		var cb_r = dom.input(span, element_id_prefix+"r", "", "", "checkbox", "r");
@@ -574,18 +575,21 @@ eldp_environment.workflow[2].render = (function() {
 		if (urcs.r === true) {
 			cb_r.checked = true;
 		}
+		cb_r.addEventListener("click", bundle.refreshVisibleBundlesInArray);
 		
 		var cb_c = dom.input(span, element_id_prefix+"c", "", "", "checkbox", "c");
 		dom.span(span, "", "", "C");
 		if (urcs.c === true) {
 			cb_c.checked = true;
 		}
+		cb_c.addEventListener("click", bundle.refreshVisibleBundlesInArray);
 		
 		var cb_s = dom.input(span, element_id_prefix+"s", "", "", "checkbox", "s");
 		dom.span(span, "", "", "S");
 		if (urcs.s === true) {
 			cb_s.checked = true;
 		}
+		cb_s.addEventListener("click", bundle.refreshVisibleBundlesInArray);
 	
 	
 	};

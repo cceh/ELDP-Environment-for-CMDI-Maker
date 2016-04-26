@@ -287,9 +287,15 @@ eldp_environment.eldp_generator = function(data){
 
 			//cheap and inaccurate way to calculate person's age, as wished by ELDP
 			if (bundle.bundle.date.year !== "" && bundle.bundle.date.year !== "YYYY"){
+<<<<<<< HEAD
 
 				var age = bundle.bundle.date.year - pers.birth_year;
 
+=======
+				
+				var age = parseInt(bundle.bundle.date.year) - parseInt(pers.birth_year);
+				
+>>>>>>> c0bfd6bc3a78f73eda74d28dec11cc287bc33aab
 				if (typeof age == "number" && !(isNaN(age))){
 
 					xml.element("Age_at_Time_of_Recording", age);

@@ -22,12 +22,12 @@ eldp_environment.eldp_generator = function(data){
 	//var eldp_bundle_profile="clarin.eu:cr1:p_1271859438204";
 	var eldp_bundle_profile="clarin.eu:cr1:p_1407745711992";
 	var language_code_prefix = "ISO639-3:";
-	
+
 	var xml = new XMLString();
-	
+
 	var IDREFS = [];
 	var IDREF_index;
-	
+
 	var createIDREFS = function(){
 
 		var rString1 = strings.randomString(8, '0123456789abcdefghijklmnopqrstuvwxyz');
@@ -41,51 +41,52 @@ eldp_environment.eldp_generator = function(data){
 	};
 
 	var insert_cmdi_header = function(MdCreator,MdCreationDate,MdProfile){
-		
+
 		xml.open("Header");
 		xml.element("MdCreator",MdCreator);
 		xml.element("MdCreationDate",MdCreationDate);
 		xml.element("MdProfile",MdProfile);
 		xml.close("Header");
-		
+
 	};
-	
-	
+
+
 	var getXMLLangAttribute = function(){
-	
+
 		return ["xml:lang", get("metadata_language_select")];
-	
+
 	};
-	
-	
+
+
 	var insertLanguages = function(langs){
-	
+
 		xml.open("ContentLanguages");
-		
+
 		forEach(langs, function(lang){
-		
+
 			xml.open("ContentLanguage");
 			xml.element("Name", lang.name);
 			xml.element("Code", language_code_prefix + lang.code);
-			
+
 			if (lang.content_language === true){
 				xml.element("Use", "Content");
 			}
-			
+
 			else {
 				xml.element("Use", "Working");
 			}
-			
-			xml.close("ContentLanguage");		
-		
+
+			xml.close("ContentLanguage");
+
 		});
-		
+
 		xml.close("ContentLanguages");
-	
+
 	};
+
 	
 	var getTimezoneOffset = function(){
-	
+
 		function pad(number, length){
 			var str = "" + number
 			while (str.length < length) {
@@ -99,18 +100,18 @@ eldp_environment.eldp_generator = function(data){
 			pad(parseInt(Math.abs(offset/60)), 2) +
 			":" +   //the colon is there because arbil does it too. normally, timezone offsets are like +0100 or -0600
 			pad(Math.abs(offset%60), 2));
-			
+
 		return offset;
-		
+
 	};
-	
-	
+
+
 	var createBundle = function(bundle, persons, resources){
-		
+
 		xml.reset();  //we're starting a new xml file here, so tabula rasa!
 
-		xml.header();	
-		
+		xml.header();
+
 		xml.open("CMD",[
 			["xmlns", "http://www.clarin.eu/cmd/"],
 			["xmlns:cmd","http://www.clarin.eu/cmd/"],
@@ -120,67 +121,67 @@ eldp_environment.eldp_generator = function(data){
 			["xsi:schemaLocation","http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/" + eldp_bundle_profile + "/xsd"],
 			["CMDVersion", "1.1"]
 		]);
-		
+
 
 		//CMDI Header
 		insert_cmdi_header(get("metadata_creator"), dates.today() + getTimezoneOffset(), eldp_bundle_profile);
-		
-		
+
+
 		//in resources is nothing, as this is a session and no corpus. attached media files in a cmdi session are further down
 		xml.open("Resources");
-		
-		
+
+
 		if (bundle.resources.resources.length > 0){
-		
+
 			xml.open("ResourceProxyList");
-			
-			for (var i = 0; i < bundle.resources.resources.length; i++){  
-			
+
+			for (var i = 0; i < bundle.resources.resources.length; i++){
+
 				IDREFS.push(createIDREFS());
-				
+
 				xml.open("ResourceProxy", [["id",IDREFS[i]]]);
 				xml.element("ResourceType", "Resource");  //MIMETYPE AS ATTRIBUTE!
 				console.log(resources);
 				xml.element("ResourceRef", resources.getByID(bundle.resources.resources[i].resource_id).name);
 				xml.close("ResourceProxy");
 			}
-			
+
 			xml.close("ResourceProxyList");
 		}
-		
+
 		else {
 			xml.element("ResourceProxyList", "");
 		}
-		
-		
+
+
 		xml.element("JournalFileProxyList", "");
 		xml.element("ResourceRelationList", "");
 		xml.close("Resources");
-		
+
 		xml.open("Components");
-		
+
 		xml.open("ELDP_Bundle");
 
-		xml.element("Title", bundle.bundle.title);		
+		xml.element("Title", bundle.bundle.title);
 		xml.element("ID", bundle.bundle.id_element);
 		xml.element("Description", bundle.bundle.description, [getXMLLangAttribute()]);
-		
+
 		xml.open("StatusInfo");
 		xml.element("Status", "in-progress");  //no input
 		xml.element("ChangeDate", dates.today());
 		xml.close("StatusInfo");
-		
+
 		//No depositor input
 		insertDummyDepositor();
 
-		
+
 		insertLanguages(bundle.languages.bundle_languages);
 		insertGenres(bundle.content.genre);
 		insertKeywords(bundle.content.keywords);
 		insertPersons(bundle.persons.persons, persons, bundle);
 
 		xml.open("ProjectLocations");
-		
+
 		xml.open("ProjectLocation");
 		xml.element("Name", bundle.bundle.location.name);
 		xml.open("ProjectGeographic");
@@ -189,46 +190,43 @@ eldp_environment.eldp_generator = function(data){
 		//xml.element("Address", bundle.bundle.location.address);
 		xml.close("ProjectGeographic");
 		xml.close("ProjectLocation");
-		
+
 		xml.close("ProjectLocations");
 
 		insertBundleResources(bundle.resources.resources, resources, bundle.languages.bundle_languages, bundle.persons.persons, persons, bundle);
-		
+
 		xml.close("ELDP_Bundle");
 		xml.close("Components");
 		xml.close("CMD");
-		
+
 	};
-	
-	
+
+
 	var insertGenres = function(genre){
-	
+
 		if (genre == ""){
 			return;
 		}
-		
-		
+
+
 		xml.open("Genres");
 		xml.element("Genre", genre);
 		xml.close("Genres");
-		
+
 	};
-	
-	
-	
+
+
 	var insertDummyDepositor = function(){
-	
+
 		xml.open("Depositors");
 		xml.open("Depositor");
-		xml.element("Role", "Depositor");  
+		xml.element("Role", "Depositor");
 		xml.element("AdditionalInformation", "");
 		xml.open("PersonalData");
 		xml.open("Name");
 		xml.element("Name", "");
 		xml.close("Name");
-		xml.open("BiographicalData");
-		/*xml.element("BirthYear", "");*/
-		xml.close("BiographicalData");
+		xml.element("BiographicalData", "");
 		xml.close("PersonalData");
 		xml.element("Gender", "");
 		xml.open("Languages");
@@ -239,215 +237,216 @@ eldp_environment.eldp_generator = function(data){
 		xml.close("Languages");
 		xml.close("Depositor");
 		xml.close("Depositors");
-	
+
 	};
-	
-	
+
+
 	var insertPersonLanguages = function(languages){
-	
+
 		if (languages.length == 0){
 			return;
 		}
-		
+
 		xml.open("Languages");
-	
+
 		forEach(languages, function(lang){
-		
+
 			xml.open("Language");
 			xml.element("Name", lang.name);
 			xml.element("Code", language_code_prefix + lang.iso_code);
 			xml.element("Additional_Information", lang.additional_information);
 			xml.close("Language");
-		
+
 		});
-		
+
 		xml.close("Languages");
-		
+
 	};
-	
+
 	/*
 
 	!! AGE  = BUNDLE_DATE - PERSON BIRTH YEAR
 	simple calculation wished by ELDP
-	
+
 	*/
-	var insertPersons = function(person_in_bundles, persons, bundle){
 	
+	var insertPersons = function(person_in_bundles, persons, bundle){
+
 		if (person_in_bundles.length === 0){
 			return;
 		}
-		
+
 		xml.open("Persons");
-		
+
 		forEach(person_in_bundles, function(person_in_bundle){
 			var pers = persons.getByID(person_in_bundle.person_id);
-			
+
 			xml.open("Person");
-			
+
 			xml.element("PersonID", "");  //no input
-			
+
 			//cheap and inaccurate way to calculate person's age, as wished by ELDP
 			if (bundle.bundle.date.year !== "" && bundle.bundle.date.year !== "YYYY"){
-				
+
 				var age = bundle.bundle.date.year - pers.birth_year;
-				
+
 				if (typeof age == "number" && !(isNaN(age))){
-				
+
 					xml.element("Age_at_Time_of_Recording", age);
-					
+
 				}
 			}
-			
+
 			xml.element("Role", person_in_bundle.role);
-			
+
 			xml.element("AdditionalInformation", pers.person_additional_information);
-			
+
 			xml.element("BiographicalNote", pers.biographical_note);
-			
+
 			var ethnicities = strings.linesToArray(pers.ethnicity);
 			var ethnicities_add_infos = strings.linesToArray(pers.ethnicity_additional_info);
-			
+
 			if (ethnicities.length == ethnicities_add_infos.length && ethnicities.length != 0){
-			
+
 				//No wrapper element here!
-			
+
 				for (var i = 0; i < ethnicities.length; i++){
-				
+
 					xml.open("Ethnicity");
-					
+
 					xml.element("EthnicAffiliation", ethnicities[i]);
 					xml.element("AdditionalInformation", ethnicities_add_infos[i]);
-					
-					xml.close("Ethnicity");				
-				
+
+					xml.close("Ethnicity");
+
 				}
-				
+
 			}
-			
+
 			xml.open("PersonalData");
 			xml.open("Name");
-			
+
 			xml.element("Title", pers.title);
-			
+
 			if (pers.nameKnownAs !== ""){
 				xml.element("Name", pers.nameKnownAs, [["kind", "KnownAs"]]);
 			}
-			
+
 			if (pers.fullName !== ""){
 				xml.element("Name", pers.fullName, [["kind", "FullName"]]);
 			}
-			
+
 			if (pers.nameSortBy !== ""){
 				xml.element("Name", pers.nameSortBy, [["kind", "asSortBy"]]);
 			}
-			
+
 			xml.close("Name");
-			
+
 			xml.open("BiographicalData");
-			
-			if (pers.birth_year != "YYYY" && pers.birth_year != ""){			
+
+			if (pers.birth_year != "YYYY" && pers.birth_year != ""){
 				xml.element("BirthYear", pers.birth_year);
 			}
-			
+
 			if (pers.death_year != "YYYY" && pers.death_year != ""){
 				xml.element("DeathYear", pers.death_year);
 			}
-			
-			
+
+
 			xml.close("BiographicalData");
-			
+
 			xml.close("PersonalData");
-			
+
 			xml.open("Gender");
 			xml.element("GenderIdentification", pers.gender);
 			xml.element("AdditionalInformation", "");  //No input!
 			xml.close("Gender");
-			
+
 			xml.open("Education");
 			xml.element("Level", pers.education);
 			xml.element("AdditionalInformation", "");  //No input!
 			xml.close("Education");
-			
+
 			insertPersonLanguages(pers.languages.actor_languages);
 
-			
+
 			var nationalities = strings.linesToArray(pers.nationality);
 			var nationalities_add_infos = strings.linesToArray(pers.nationality_additional_info);
-			
+
 			if (nationalities.length == nationalities_add_infos.length && nationalities.length != 0){
-			
+
 				//No wrapper element here!
-			
+
 				for (var i = 0; i < nationalities.length; i++){
-				
+
 					xml.open("Nationality");
-					
+
 					xml.element("Name", nationalities[i]);
 					xml.element("AdditionalInformation", nationalities_add_infos[i]);
-					
-					xml.close("Nationality");				
-				
+
+					xml.close("Nationality");
+
 				}
-				
+
 			}
-			
+
 			xml.close("Person");
-		
+
 		});
 
-		xml.close("Persons");	
-	
+		xml.close("Persons");
+
 	};
-	
+
 
 	var insertBundleResource = function(res_in_bun, resource, languages, persons_in_bundle, persons, bundle, IDREF){
 
 		log(res_in_bun);
-		
+
 		xml.open("Resource", [["ref", IDREF]]);
 		xml.element("Title", resource.name);
-		
+
 		xml.element("ID", "");
 		xml.element("Host", "");
 		xml.open("StatusInfo");
 		xml.element("Status", resource.status);
-		
+
 		xml.element("ChangeDate", dates.today());
 		xml.close("StatusInfo");
-		
-		
+
+
 		//Depositor!
 		insertDummyDepositor();
-		
+
 		insertLanguages(languages);
 		insertGenres(bundle.content.genre);
 		insertKeywords(bundle.content.keywords);
 		insertPersons(persons_in_bundle, persons, bundle);
-		
+
 		xml.open("AccessInformation");
-		
+
 		xml.element("Restrictions", bundle.resources.access_restrictions);
 		xml.element("ConditionsofAccess", bundle.resources.access_conditions);
-		
+
 		var oURCS = "Open Access";
 		if (res_in_bun.urcs.u == true) oURCS = "User";
 		if (res_in_bun.urcs.r == true) oURCS = "Researcher";
 		if (res_in_bun.urcs.c == true) oURCS = "Community member";
 		if (res_in_bun.urcs.s == true) oURCS = "Subscriber";
-		
+
 		xml.element("oURCS", oURCS);
-		
+
 		xml.close("AccessInformation");
-		
+
 		insertFileElement(resource);
-		
+
 		xml.close("Resource");
-		
+
 	};
-	
-	
+
+
 	var insertFileElement = function(resource){
-	
+
 		var file_types = {
 			"eaf": "TextFile",
 			"txt": "TextFile",
@@ -456,138 +455,138 @@ eldp_environment.eldp_generator = function(data){
 			"tif": "ImageFile",
 			"bmp": "ImageFile",
 			"wav": "AudioFile",
+			"mp3": "AudioFile",	//MP3 recognized to TextFile
 			"mp4": "VideoFile",
-			"avi": "VideoFile",
-			
-			
+			"avi": "VideoFile"
 		};
-	
-	
+
+
 		var file_ending = strings.getFileTypeFromFilename(resource.name);
-		
+
 		if (file_types[file_ending]){
 			var file_type = file_types[file_ending];
 		}
-		
+
 		else {
-		
+
 			file_type = "TextFile";
-		
+
 		}
-	
+
 		xml.open("File");
-		
+
 		xml.open(file_type);
-		
+
 		xml.open("General");
 		xml.element("Name", resource.name);
-		
+
 		var date = dates.parseDate(resource.lastModified);
-		
+
 		if (date != null){
 			var date_string = dates.dateAsString(date);
 		}
-		
+
 		else {
-		
+
 			date_string = "1977-01-01";
-		
+
 		}
-		
+
 		xml.element("Date", date_string);
-		
+
 		xml.close("General");
-		
-		
+
+
 		switch (file_type){
 			case "ImageFile": {
 				xml.element("ImageInformations", "");
 				break;
 			};
-			
+
 			case "AudioFile": {
 				xml.element("MediaInformations", "");
 				break;
 			};
-			
+
 			case "VideoFile": {
 				xml.element("MediaInformations", "");
 				xml.element("ImageInformations", "");
 				xml.element("VideoInformations", "");
 				break;
 			};
-			
+
 			default: {
 				break;
+
 			};
 		}
-		
+
 		xml.element("Checksum", "");
-		
+
 		xml.close(file_type);
-		
+
 		xml.close("File");
-		
+
 	};
-	
-	
+
+
 	var insertKeywords = function(keywords){
-	
+
 		keywords = strings.linesToArray(keywords);
-		
+
 		if ((keywords.length == 0) || (keywords.length == 1 && keywords[0] == "")){
 			return "";
 		}
-		
+
 		xml.open("Keywords");
-		
+
 		for (var i = 0; i < keywords.length; i++){
-		
+
 			xml.element("Keyword", keywords[i]);
-			
+
 		}
-		
+
 		xml.close("Keywords");
-		
+
 	};
-	
-	
+
+
 	var insertBundleResources = function(resources_in_bundle, resources, languages, persons_in_bundle, persons, bundle){
 
 		if (resources_in_bundle.length === 0){
-		
+
 			return;
-			
+
 		}
-		
+
 		xml.open("Resources");
-		
+
 		forEach(resources_in_bundle, function(res_in_bun){
-		
+
 			var res = resources.getByID(res_in_bun.resource_id);
-		
+
 			insertBundleResource(res_in_bun, res, languages, persons_in_bundle, persons, bundle, IDREFS[IDREF_index]);
-			
+
 			IDREF_index += 1;
-			
+
 		});
-		
+
 		xml.close("Resources");
-		
+
 	};
 
-	
+
 	var my = {};
-	
+
 
 	my.bundles = map(data.bundles, function (bundle){
 		xml.reset();
 		IDREF_index = 0;
-		
+
 		createBundle(bundle, data.persons, data.resources);
-		
+
 		return xml.getString();
-		
+
 	});
 
 	return my;

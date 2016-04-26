@@ -254,7 +254,7 @@ eldp_environment.workflow[0] = (function(){
                 id: "link_clear_file_list",
                 icon: "reset",
                 label: my.l("resources", "clear_file_list"),
-                onclick: function() { my.reset(); }
+                onclick: function() { my.resources.reset(); my.refresh(); }
             },
             {
                 id: "link_set_for_all",

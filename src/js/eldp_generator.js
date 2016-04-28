@@ -226,9 +226,9 @@ eldp_environment.eldp_generator = function(data){
 		xml.open("Name");
 		xml.element("Name", "");
 		xml.close("Name");
-		xml.open("BiographicalData");
+		xml.element("BiographicalData", "");
 		/*xml.element("BirthYear", "");*/
-		xml.close("BiographicalData");
+		/* xml.close("BiographicalData");*/
 		xml.close("PersonalData");
 		xml.element("Gender", "");
 		xml.open("Languages");
@@ -454,6 +454,7 @@ eldp_environment.eldp_generator = function(data){
 			"jpg": "ImageFile",
 			"png": "ImageFile",
 			"tif": "ImageFile",
+			"tiff": "ImageFile",
 			"bmp": "ImageFile",
 			"wav": "AudioFile",
 			"mp4": "VideoFile",
@@ -550,8 +551,15 @@ eldp_environment.eldp_generator = function(data){
 		xml.close("Keywords");
 		
 	};
-	
-	
+
+
+	// new function for the recording conditions and recording equipment
+	var insertRecordings = function(){
+
+
+	};
+
+
 	var insertBundleResources = function(resources_in_bundle, resources, languages, persons_in_bundle, persons, bundle){
 
 		if (resources_in_bundle.length === 0){

@@ -24,7 +24,7 @@ var eldp_environment = (function(){
 	my.id = "eldp";
 	my.title = "ELDP";
 	my.version = "1.11";
-	my.min_cmdi_maker_version = "2.9";
+	my.min_cmdi_maker_version = "2.10";
 	
 	my.workflow = [];
 	my.languages = [];

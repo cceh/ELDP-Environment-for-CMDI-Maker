@@ -453,6 +453,7 @@ eldp_environment.eldp_generator = function(data){
 			"jpg": "ImageFile",
 			"png": "ImageFile",
 			"tif": "ImageFile",
+            "tiff": "ImageFile",
 			"bmp": "ImageFile",
 			"wav": "AudioFile",
 			"mp3": "AudioFile",	//MP3 recognized to TextFile

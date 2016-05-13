@@ -186,6 +186,7 @@ eldp_environment.eldp_generator = function(data){
         xml.open("ProjectLocation");
         xml.element("Name", bundle.bundle.location.name);
         xml.open("ProjectGeographic");
+        xml.element("Continent", bundle.bundle.location.continent);
         xml.element("Country", bundle.bundle.location.country);
         //xml.element("Region", bundle.bundle.location.region);
         //xml.element("Address", bundle.bundle.location.address);
@@ -558,24 +559,16 @@ eldp_environment.eldp_generator = function(data){
 
     var insertRecordings = function(){
 
-
         xml.open("Recordings");
         xml.open("Recording");
 
         // Recording Equipment
         var rec = document.getElementById('bundle_0_content_recording_equipment').value;
-
         xml.element("Equipment", rec);
-        xml.close("Recording");
-        xml.close("Recordings");
-
-        // Recording Conditions
-        xml.open("Recordings");
-        xml.open("Recording");
 
         var condition = document.getElementById('bundle_0_content_recording_conditions').value;
-
         xml.element("RecordingConditions", condition);
+
         xml.close("Recording");
         xml.close("Recordings");
     };

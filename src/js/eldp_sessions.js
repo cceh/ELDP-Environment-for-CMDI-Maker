@@ -220,7 +220,7 @@ eldp_environment.workflow[2] = (function() {
     };
 
 
-    my.createNewBundleWithResources = function(name, expanded, resources) {
+    my.createNewBundleWithResources = function(name, expanded, resource_ids) {
 
         var bundle_object = APP.forms.createEmptyObjectFromTemplate(my.parent.bundle_form);
         bundle_object.bundle.title = name;
@@ -230,9 +230,9 @@ eldp_environment.workflow[2] = (function() {
 
         my.render.renderBundle(bundle_object);
 
-        for (var r = 0; r < resources.length; r++) {
+        for (var r = 0; r < resource_ids.length; r++) {
 
-            my.addResource(bundle_object.id, resources[r]);
+            my.addResourceByResourceID(bundle_object.id, resource_ids[r]);
 
         }
 
@@ -398,10 +398,19 @@ eldp_environment.workflow[2] = (function() {
     };
 
 
+    my.addResourceByResourceID = function(bundle_id, resource_id, without_questions) {
+
+      return my.addResource(bundle_id, resources.resources.getIndexByID(resource_id), without_questions);
+
+    }
+
+
     my.addResource = function(bundle_id, resource_file_index, without_questions) {
-        // resource_file_index is the index of the available media file, that is to be added to the bundle
-        // if resource_file_index is -1, a new empty field with no available media file is created
-        //if without_questions == true, no alerts will be thrown (e.g. when resources are added at start up)
+        /*
+          resource_file_index is the index of the available media file, that is to be added to the bundle
+          if resource_file_index is -1, a new empty field with no available media file is created
+          if without_questions = true, no alerts will be thrown (e.g. when resources are added at start up)
+        */
 
         if (resource_file_index >= resources.resources.length) {
             return;

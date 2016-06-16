@@ -166,7 +166,7 @@ eldp_environment.eldp_generator = function(data){
         xml.element("Title", bundle.bundle.title);
         xml.element("ID", bundle.bundle.id_element);
         xml.element("Description", bundle.bundle.description, [getXMLLangAttribute()]);
-
+        xml.element("AdditionalInformation", bundle.bundle.additional_information);
         xml.open("StatusInfo");
         xml.element("Status", "in-progress");  //no input
         xml.element("ChangeDate", dates.today());

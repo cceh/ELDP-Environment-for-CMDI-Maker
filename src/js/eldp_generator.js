@@ -443,7 +443,14 @@ eldp_environment.eldp_generator = function(data){
 
         insertFileElement(resource);
 
-        insertRecordings(resource);
+        xml.open("Recordings");
+        xml.open("Recording");
+
+        xml.element("Equipment", bundle.content.recording_equipment);
+        xml.element("RecordingConditions", bundle.content.recording_conditions);
+
+        xml.close("Recording");
+        xml.close("Recordings");
 
         xml.close("Resource");
 
@@ -554,23 +561,6 @@ eldp_environment.eldp_generator = function(data){
 
         xml.close("Keywords");
 
-    };
-
-
-    var insertRecordings = function(){
-
-        xml.open("Recordings");
-        xml.open("Recording");
-
-        // Recording Equipment
-        var rec = document.getElementById('bundle_0_content_recording_equipment').value;
-        xml.element("Equipment", rec);
-
-        var condition = document.getElementById('bundle_0_content_recording_conditions').value;
-        xml.element("RecordingConditions", condition);
-
-        xml.close("Recording");
-        xml.close("Recordings");
     };
 
 

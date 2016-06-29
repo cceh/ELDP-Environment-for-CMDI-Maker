@@ -141,8 +141,7 @@ eldp_environment.eldp_generator = function(data){
                 IDREFS.push(createIDREFS());
 
                 xml.open("ResourceProxy", [["id",IDREFS[i]]]);
-                xml.element("ResourceType", "Resource");  //MIMETYPE AS ATTRIBUTE!
-                // console.log(resources);
+                xml.element("ResourceType", "Resource", [["mimetype", resources.getByID(bundle.resources.resources[i].resource_id).mimeType ]]);
                 xml.element("ResourceRef", resources.getByID(bundle.resources.resources[i].resource_id).name);
                 xml.close("ResourceProxy");
             }

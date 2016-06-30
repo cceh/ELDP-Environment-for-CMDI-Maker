@@ -71,7 +71,7 @@ eldp_environment.bundle_form = {
 							name: "continent",
 							type: "select",
 							size: 1,
-							vocabulary: ["","Africa","Asia","Europe","Australia","Oceania","North-America","Middle-America","South-America"],
+							vocabulary: ["", "Africa", "Europe", "Asia", "North-America", "South-America", "Oceania", "Antartica"],
 							default_value: "",
 							comment: "The name of the continent where a recording was made or a photo was taken, for example Africa.",
 						},					

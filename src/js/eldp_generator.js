@@ -185,9 +185,40 @@ eldp_environment.eldp_generator = function(data){
         xml.open("ProjectLocation");
         xml.element("Name", bundle.bundle.location.name);
         xml.open("ProjectGeographic");
-        xml.element("Continent", bundle.bundle.location.continent);
+        
+        var elContinent = bundle.bundle.location.continent;
+        var valueOfContinent;
+
+        switch (elContinent){
+            case 'Africa':
+                valueOfContinent = "AF";
+                break;
+            case 'Europe':
+                valueOfContinent = "EU";
+                break;
+            case 'Asia':
+                valueOfContinent = "AS";
+                break;
+            case 'North-America':
+                valueOfContinent = "NA";
+                break;
+            case 'South-America':
+                valueOfContinent = "SA";
+                break;
+            case 'Oceania':
+                valueOfContinent = "OC";
+                break;
+            case 'Antartica':
+                valueOfContinent = "AN";
+                break;
+            default:
+                valueOfContinent = "";
+                break;
+        }
+
+        xml.element("Continent", valueOfContinent);
         xml.element("Country", bundle.bundle.location.country);
-        //xml.element("Region", bundle.bundle.location.region);
+        xml.element("Region", bundle.bundle.location.region);
         //xml.element("Address", bundle.bundle.location.address);
         xml.close("ProjectGeographic");
         xml.close("ProjectLocation");

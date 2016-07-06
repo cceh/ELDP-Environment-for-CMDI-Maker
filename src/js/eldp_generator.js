@@ -216,7 +216,12 @@ eldp_environment.eldp_generator = function(data){
                 break;
         }
 
-        xml.element("Continent", valueOfContinent);
+        if(valueOfContinent == ""){
+
+        } else {
+            xml.element("Continent", valueOfContinent);
+        }
+        
         xml.element("Country", bundle.bundle.location.country);
         xml.element("Region", bundle.bundle.location.region);
         //xml.element("Address", bundle.bundle.location.address);

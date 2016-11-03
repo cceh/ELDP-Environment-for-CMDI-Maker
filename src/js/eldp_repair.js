@@ -26,7 +26,13 @@ eldp_environment.repair = function (broken_json){
 		res.id = i;
 		res.status = (res.stable ? "stable" : "in-progress");
 		
-	});	
+	});
+	
+	//fix issue with old cmdi files
+	fixed_json.environments.eldp.resources.list.forEach(function(e) {
+        e.mimeType = e.type;
+        delete e.type;
+    	});
 	
 	
 	if (Array.isArray(fixed_json.environments.eldp.resources)){

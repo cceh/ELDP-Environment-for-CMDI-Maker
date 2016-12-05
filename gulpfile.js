@@ -1,111 +1,103 @@
 // include gulp
-var gulp = require('gulp'); 
- 
+var gulp = require('gulp');
+
 // include plug-ins
-var jshint = require('gulp-jshint');
-var changed = require('gulp-changed');
-var concat = require('gulp-concat');
-var stripDebug = require('gulp-strip-debug');
-var uglify = require('gulp-uglify');
-var minifyCSS = require('gulp-minify-css');
-var notify = require('gulp-notify');
-
-//var imagemin = require('gulp-imagemin');
-//var minifyHTML = require('gulp-minify-html');
-//var htmlreplace = require('gulp-html-replace');
-//var header = require('gulp-header');
-//var manifest = require('gulp-manifest');
-//var imageResize = require('gulp-image-resize');
-
+var jshint = require('gulp-jshint'),
+    changed = require('gulp-changed'),
+    concat = require('gulp-concat'),
+    stripDebug = require('gulp-strip-debug'),
+    uglify = require('gulp-uglify'),
+    cleancss = require('gulp-clean-css'),
+    connect = require('gulp-connect'),
+    watch = require('gulp-watch'),
+    notify = require('gulp-notify');
 
 var source_scripts = [
-
-	/*ELDP */
-	"./src/js/eldp_main.js",
-	"./src/js/eldp_LanguagePacks.js",			
-	"./src/js/eldp_forms.js",
-	"./src/js/eldp_resources.js",
-	"./src/js/eldp_actors.js",
-	"./src/js/eldp_actor_languages.js",
-	"./src/js/eldp_sessions.js",
-	"./src/js/eldp_sessions_rendering.js",
-	"./src/js/eldp_output.js",
-	"./src/js/eldp_generator.js",
-	"./src/js/eldp_repair.js"
+    /*ELDP */
+    "./src/js/eldp_main.js",
+    "./src/js/eldp_LanguagePacks.js",
+    "./src/js/eldp_forms.js",
+    "./src/js/eldp_resources.js",
+    "./src/js/eldp_actors.js",
+    "./src/js/eldp_actor_languages.js",
+    "./src/js/eldp_sessions.js",
+    "./src/js/eldp_sessions_rendering.js",
+    "./src/js/eldp_output.js",
+    "./src/js/eldp_generator.js",
+    "./src/js/eldp_repair.js"
 ];
- 
- 
-// JS hint task
-gulp.task('jshint', function() {
-  gulp.src('./src/js/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-	.pipe(notify({message: 'JSHINT task complete'}));;
-});
-
-
-// minify new images
-gulp.task('imagemin', function() {
-	var imgSrc = './src/img/**/*',
-		imgDst = './build/img';
- 
-	gulp.src(imgSrc)
-		//.pipe(changed(imgDst))
-		.pipe(imagemin())
-		.pipe(gulp.dest(imgDst));
-});
-
-
-// JS concat, strip debugging, minify, and add header
-gulp.task('scripts', function() {
-  gulp.src(source_scripts)
-    .pipe(concat('eldp_environment.js')).on('error', errorHandler)
-    //.pipe(stripDebug())
-    .pipe(uglify()).on('error', errorHandler)
-    .pipe(gulp.dest('./build/')).on('error', errorHandler)
-	.pipe(notify({message: 'Scripts task complete'}));
-});
-
 
 var style_sources = [
-	"./src/css/layout-eldp.css",
+    "./src/css/layout-eldp.css"
 ];
 
+//DEV
+// localserver
+gulp.task('server', function() {
+    connect.server({
+        port: 8082,
+        livereload: true,
+        root: ['.', './src']
+    });
+});
+
+gulp.task('livereload', function() {
+    gulp.src(['./src/css/*.css', './src/js/*.js'])
+        .pipe(watch())
+        .pipe(connect.reload())
+        .pipe(notify({ message: 'livereload task complete' }));
+});
+
+gulp.task('watch', function() {
+    gulp.watch([
+        './src/js/*.js',
+        './src/css/*.css'
+    ], function(event) {
+        console.log('@--> caught change in file', event);
+        gulp.src(event.path, { read: false })
+            .pipe(connect.reload())
+            .pipe(notify({ message: 'Caught change in file' }));
+    });
+});
+
+
+// JS hint task
+gulp.task('jshint', function() {
+    gulp.src('./src/js/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
+        .pipe(notify({ message: 'JSHINT task complete' }));
+});
+
+//PROD
+// JS concat, strip debugging, minify, and add header
+gulp.task('scripts', function() {
+    gulp.src(source_scripts)
+        .pipe(concat('eldp_environment.js')).on('error', errorHandler)
+        .pipe(stripDebug())
+        .pipe(uglify()).on('error', errorHandler)
+        .pipe(gulp.dest('./build/')).on('error', errorHandler)
+        .pipe(notify({ message: 'Scripts task complete' }));
+});
 
 // CSS concat and minify
 gulp.task('styles', function() {
-  gulp.src(style_sources)
-    .pipe(concat('eldp_environment.css'))
-    .pipe(minifyCSS())
-    .pipe(gulp.dest('./build/'))
-	.pipe(notify({message: 'Styles task complete'}));
+    gulp.src(style_sources)
+        .pipe(concat('eldp_environment.css'))
+        .pipe(cleancss())
+        .pipe(gulp.dest('./build/'))
+        .pipe(notify({ message: 'Styles task complete' }));
 });
 
 
-/* Don't use ImageMagick because it has a bug that makes some PNGs transparent. GraphicsMagick is in this case better. */
-/* But we don't do image resizing at all at this point. */
-/*
-gulp.task('resize', function () {
-  gulp.src(['src/img/icons/*'])
-    .pipe(imageResize({ 
-      width : 36,
-      height : 36,
-      upscale : false,
-	  imageMagick: false
-    }))
-    .pipe(gulp.dest('build/img/icons/'));
-});
-*/
-
-
-// default gulp task
+// gulp task for production
 gulp.task('default', ['scripts', 'styles'], function() {});
 
+// gulp task for development
+gulp.task('develop', ['server', 'watch'], function() {});
 
 // Error handler
-function errorHandler (error) {
-  console.log(error.toString());
-  this.emit('end');
+function errorHandler(error) {
+    console.log(error.toString());
+    this.emit('end');
 }
-
-

@@ -1,0 +1,43 @@
+{
+  "name": "eldp-environment-for-cmdi-maker",
+  "version": "1.0.0",
+  "description": "edlp-environment for CMDI Maker",
+  "main": "debug.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cceh/ELDP-Environment-for-CMDI-Maker.git"
+  },
+  "keywords": [
+    "eldp",
+    "metadata",
+    "linguistics",
+    "CMDI",
+    "Maker",
+    "CCeH",
+    "University",
+    "Cologne"
+  ],
+  "author": "cceh",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/cceh/ELDP-Environment-for-CMDI-Maker/issues"
+  },
+  "homepage": "https://github.com/cceh/ELDP-Environment-for-CMDI-Maker#readme",
+  "devDependencies": {
+    "gulp-changed": "^1.3.2",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch": "^4.3.11"
+  }
+}

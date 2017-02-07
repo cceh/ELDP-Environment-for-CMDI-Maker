@@ -321,7 +321,9 @@ eldp_environment.eldp_generator = function(data){
 
             xml.open("Person");
 
-            xml.element("PersonID", "");  //no input
+            //xml.element("PersonID", "");  //issue: unique codes for each person in the bundles
+            
+            xml.element("PersonID", pers.code);
 
             //cheap and inaccurate way to calculate person's age, as wished by ELDP
             if (bundle.bundle.date.year !== "" && bundle.bundle.date.year !== "YYYY"){

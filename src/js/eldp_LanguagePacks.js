@@ -134,7 +134,8 @@ eldp_environment.languages[0] = {
 			please_give_all_persons_a_name_before_creating_new_one: "Please give all your persons a name first, before creating a new one!",
 			really_erase_this_person: "Really?<br>You want to erase this person?",
 			unnamed_person: "Unnamed person",
-			signal_msg: "You are using ELDP Profile v. "
+			signal_msg: "You are using ELDP Profile v. ",
+			export_persons_as_json: "Export as JSON File"
 
 		},
 		
@@ -323,7 +324,8 @@ eldp_environment.languages[1] = {
 			why_not_create_one__after_link: " du nicht eine?",
 			please_give_all_persons_a_name_before_creating_new_one: "Bitte gib allen Personen einen Namen, bevor du eine neue erstellst!",
 			really_erase_this_person: "Willst du diese Person wirklich löschen?",
-			unnamed_person: "Unbenannte Person"
+			unnamed_person: "Unbenannte Person",
+			export_persons_as_json: "Exportieren als JSON"
 
 		},
 		

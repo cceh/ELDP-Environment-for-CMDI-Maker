@@ -23,7 +23,7 @@ var eldp_environment = (function(){
 	my.name = "eldp";
 	my.id = "eldp";
 	my.title = "ELDP";
-	my.version = "1.13";
+	my.version = "1.15";
 	my.min_cmdi_maker_version = "2.09";
 	
 	my.workflow = [];

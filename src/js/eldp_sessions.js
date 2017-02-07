@@ -202,6 +202,13 @@ eldp_environment.workflow[2] = (function() {
                 my.refresh();
             }
         },  {
+            label: l("bundle", "create_id"),
+            icon: "data",
+            id: "link_create_id",
+            onclick: function() {
+                my.createID();
+            }
+        },  {
             label: l("environment", "signal_msg"),
             icon: "textedit",
             id: "environment_signal"
@@ -249,6 +256,64 @@ eldp_environment.workflow[2] = (function() {
 
         return bundle_object.id;
 
+    };
+
+
+    my.createID = function() {
+    
+        for(var i = 0; i < my.bundles.length; i++){
+
+            var bundleTitle = my.bundles.get(i).bundle.title;
+
+            var bundleIdElement = my.bundles.get(i).bundle.id_element;
+
+            var shortBundleTitle = my.shortString(bundleTitle, 10);
+
+            var list = document.querySelectorAll('[name$=id_element]'); // list of created bundles
+
+            var bundleStartByOne = i + 1; // for alert the bundle Number start by one
+            
+            // if title and element id are in bundle then display the info
+            if(bundleTitle && bundleIdElement) {
+
+                APP.log(bundleTitle + " " + l("bundle", "bundle_has_id") + bundleIdElement)
+            
+            }
+
+            // first when unamed bundle alert set title action
+            if(!bundleTitle) {
+            
+                APP.alert( l("bundle", "set_title_in_unnamed_bundles") + " " + bundleStartByOne);
+            
+            }
+
+            // when bundle with title has no id_element then generate id element
+            if(bundleTitle && bundleIdElement == "") {
+
+                if (bundleTitle.length > 10) {
+                    
+                    list[i].value =  shortBundleTitle.replace(/([^a-z0-9]+)/gi, '_');
+                    APP.log(bundleTitle + " " + l("bundle", "bundle_get_generated_id") + list[i].value);  
+                }
+                else {
+                         
+                    list[i].value = bundleTitle.replace(/([^a-z0-9]+)/gi, '_');
+                    APP.log(bundleTitle + " " + l("bundle", "bundle_get_generated_id") + list[i].value);
+                }
+        
+            }
+        }
+    };
+
+
+    // function to short long string maxLength 10 characters with whitespaces
+    my.shortString = function (s, n){
+        
+        var cut= s.indexOf(' ', n);
+        
+        if(cut== -1) 
+            return s;
+        return s.substring(0, cut)
     };
 
 

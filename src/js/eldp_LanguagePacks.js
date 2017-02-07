@@ -195,6 +195,10 @@ eldp_environment.languages[0] = {
 			metadata_copied: "Metadata copied",
 			bundle_title_taken_from_eaf: "Bundle title has been taken from EAF file name, since bundle has not been manually named yet.",
 			oURCS_description: "The letters define access to each file at ELAR. Choose between the categories U (for all ELAR users), R (for ELAR users who are researchers), C (for ELAR users who are members of the community represented in the deposit) and S (for ELAR users who been approved of as subscribers to the deposit by the depositor.",
+			create_id: "Create ID",
+            bundle_get_generated_id: " bundle with new ID: ",
+            set_title_in_unnamed_bundles: "Please set a title for Bundle Nr: ",
+            bundle_has_id: " has the ID: "
 
 		},
 		
@@ -376,7 +380,11 @@ eldp_environment.languages[1] = {
 			from_2nd_last_to_last_bundle: "Vom vorletzten Bundle ins letzte Bundle",
 			elements_to_copy: "Zu kopierende Elemente",
 			from_where_to_where: "Von wo nach wo",
-			metadata_copied: "Metadaten kopiert"
+			metadata_copied: "Metadaten kopiert",
+			create_id: "ID erstellen",
+            bundle_get_generated_id: " bundle mit der neuen ID: ",
+            set_title_in_unnamed_bundles: "Bitte Titel nennen für Bundle Nr: ",
+            bundle_gen_id: "ID"
 		},
 		
 		output: {

@@ -220,6 +220,14 @@ eldp_environment.workflow[1] = (function(){
 			
 				}
 			},
+            {
+                id: "link_exportPersonsAsJSON",
+                icon: "export",
+                label: l("export_persons_as_json"),
+                onclick: function (){
+                	my.export_persons();
+                }
+            },
 			{
 				id: "environment_signal",
 				icon: "textedit",
@@ -616,6 +624,21 @@ eldp_environment.workflow[1] = (function(){
 		return true;
 	
 	};
+
+
+	my.export_persons = function(){
+
+        if (my.persons.length !== 0){
+
+            var persons_json = JSON.stringify(my.persons.getState());
+
+            APP.saveTextfile(persons_json, "persons.json", APP.CONF.file_download_header);
+
+        } else {
+
+            APP.alert(l("there_are_no_persons_yet"));
+        }
+    };
 
 	return my;
 	

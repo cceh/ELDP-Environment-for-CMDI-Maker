@@ -76,13 +76,13 @@ eldp_environment.workflow[2].render = (function() {
 		
 		var options = [
 			{
-				title: l("bundle", "from_bundle_1_to_all_others"),
-				id: "1_to_others"
-			},
-			{
-				title: l("bundle", "from_2nd_last_to_last_bundle"),
-				id: "second_last_to_last"
-			}		
+                title: l("bundle", "from_2nd_last_to_last_bundle"),
+                id: "second_last_to_last"
+            },
+            {
+                title: l("bundle", "from_bundle_1_to_all_others"),
+                id: "1_to_others"
+            }	
 		];
 		
 		dom.makeRadios(div, options, "copy_bundle_options", "", "title", "id", 0, undefined);

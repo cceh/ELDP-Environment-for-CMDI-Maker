@@ -549,15 +549,24 @@ eldp_environment.workflow[2] = (function() {
 
     my.handleClickOnCopyMetadata = function() {
 
-        my.refreshVisibleBundlesInArray();
-
         if (get("copy_bundle_options") == "1_to_others") {
-            my.assignBundle1Metadata();
-        } else {
-            my.copyMetadataFrom2ndLastToLast();
+
+            APP.confirm(l("bundle", "overwrite_data_warning"), function(e) {
+                if (e) {
+                    // statement
+                } else {
+                    my.assignBundle1Metadata();
+                    my.refresh();
+                }
+
+            }, l("bundle", "no"), l("yes_overwrite_data"));
         }
 
-        my.refresh();
+        if (get("copy_bundle_options") == "second_last_to_last") {
+
+            my.copyMetadataFrom2ndLastToLast();
+            my.refresh();
+        }
 
     };
 

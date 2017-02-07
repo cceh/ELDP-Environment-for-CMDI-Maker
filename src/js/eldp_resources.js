@@ -267,6 +267,14 @@ eldp_environment.workflow[0] = (function(){
                 sub_div_innerHTML: '<input type="radio" name="status_for_all" id="stable_for_all" value="stable" checked> Stable<br>'+
                             '<input type="radio" name="status_for_all" id="inProgress_for_all" value="in-progress"> In Progress<br>',
             },
+            {
+                id: "environment_signal",
+                icon: "textedit",
+                label: my.l("environment", "signal"),
+                onclick: function () {
+                    my.signalNotification();
+                }
+            }
         ];
     };
 
@@ -276,6 +284,13 @@ eldp_environment.workflow[0] = (function(){
         my.resources.setForAll("status", dom.getSelectedRadioValue("status_for_all"));
         my.refresh();
     };
+
+
+    my.signalNotification = function(){
+        
+        APP.log(my.l("environment", "signal_msg") + eldp_environment.version);
+
+        };
 
 
     my.getValidityOfFile = function(filename){

@@ -120,8 +120,12 @@ eldp_environment.workflow[3] = (function (){
 				icon: "download",
 				label: l("output", "download_zip_archive"),
 				onclick: function(){ APP.zipAllOutputFiles(); }
+			},
+			{
+				id: "environment_signal",
+				icon: "textedit",
+				label: l("environment", "signal_msg")
 			}
-		
 		];
 	};
 	

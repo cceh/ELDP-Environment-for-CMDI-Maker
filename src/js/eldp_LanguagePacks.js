@@ -69,6 +69,11 @@ eldp_environment.languages[0] = {
 			additional_information_description: "This category gives background information to how competent the person is in the language or how the person is associated with the language, for example spoken native-like, spoken a bit, understood but not spoken, and language of ethnic identification, or any other description that you find useful.",
 			
 		},
+
+		environment: {
+            signal: "ELDP",
+            signal_msg: "You are using ELDP Profile v. "
+        },
 		
 		resources: {
 			unknown: "Unknown",
@@ -128,7 +133,8 @@ eldp_environment.languages[0] = {
 			why_not_create_one__after_link: "?",
 			please_give_all_persons_a_name_before_creating_new_one: "Please give all your persons a name first, before creating a new one!",
 			really_erase_this_person: "Really?<br>You want to erase this person?",
-			unnamed_person: "Unnamed person"
+			unnamed_person: "Unnamed person",
+			signal_msg: "You are using ELDP Profile v. "
 
 		},
 		
@@ -260,6 +266,11 @@ eldp_environment.languages[1] = {
 			additional_information: "Additional Information"
 			
 		},
+
+		 environment: {
+            signal: "ELDP",
+            signal_msg: "Du verwendest das ELDP Profil v. ",
+        },
 		
 		resources: {
 			unknown: "Unbekannt",
@@ -384,4 +395,131 @@ eldp_environment.languages[1] = {
 		
 	}
 	
+};
+
+
+eldp_environment.languages[2] = {
+
+    id: "spanish",
+    name: "Español",
+    terms: {
+
+        workflow: {
+            resources: "Recursos",
+            persons: "Personas",
+            bundles: "Bundles",
+            xml_output: "XML Output"
+        },
+        resources: {
+            unknown: "Desconocido",
+            create_one_bundle_per_file: "Crear un Bundle por fichero de datos",
+            files: "Archivos",
+            selected_files: "Archivos seleccionados",
+            sort_alphabetically: "Ordernar por orden alfabético",
+            remove: "Eliminar",
+            clear_file_list: "Eliminar lista de datos",
+            usage: "Utilizar",
+            click: "Hacer clic",
+            click_to_select: "Archivo está seleccionado, otro clic más hace que se anule la selección",
+            shift: "Mantener la tecla (Shift) oprimida",
+            shift_to_select_multiple: "Presionando Shift para seleccionar múltiples archivos a la vez",
+            escape: "Escape",
+            escape_to_deselect: "Todos los archivos no están seleccionados",
+            size: "Tamaño",
+            path: "Ruta",
+            last_modified: "Ultimos cambios",
+            no_resource_files_imported: "No hay archivos importados.",
+            fade: "Archivos ocultos",
+            set_for_all: "Definir todo"
+        },
+        environment: {
+            signal: "ELDP",
+            signal_msg: "Estas utilizando el perfil ELDP version: "
+        },
+        persons: {
+            new_person: "Nueva Persona",
+            delete_this_person: "Borrar el dato de esta Persona",
+            sort_persons_alphabetically: "Ordenar personas alfabéticamente",
+            persons_alphabetically_sorted: "personas organizadas alfabéticamente",
+            duplicate_this_person: "Duplicar esta persona",
+            yes_delete_all_persons: "Sí, borrar la base de datos de personas",
+            no: "No",
+            ok: "OK",
+            confirm_erasing_persons_db: "Quieres borrar toda la base de datos de personas?",
+            all_persons_deleted: "Todas las personas han sido borradas",
+            there_are_no_persons: "¡No existen datos sobre personas!",
+            persons_imported: "Datos sobre personas han sido importados",
+            give_your_person_a_name_first: "El dato nombre sobre personas es obligatorio.",
+            yes_delete_person: "Si, borrar el dato de esta persona",
+            really_erase_before_name: "Estas seguro",
+            really_erase_after_name: " de borrar la base de datos?",
+            person_deleted_before_name: "",
+            person_deleted_after_name: "borrado",
+            there_are_no_persons_yet: "¡No existen datos sobre personas!",
+            why_not_create_one__before_link: "Crea ",
+            why_not_create_one__link: "una base de datos",
+            why_not_create_one__after_link: " de personas!",
+            please_give_all_persons_a_name_before_creating_new_one: "El dato nombre sobre personas es obligatorio.",
+            really_erase_this_person: "Deseas borrar esta persona?",
+            unnamed_person: "Persona sin nombre",
+            export_persons_as_json: "Exportar como Archivo JSON"
+
+        },
+        bundle: {
+            new_bundle: "Nuevo Bundle",
+            copy_bundle_1_metadata: "Copiar metadatos del primer bundle a todos",
+            reset_form: "Borrar formulario",
+            sort_by_name: "Organizar por nombre",
+            add_to_bundle: "Agregar a bundle",
+            no_files_have_been_added: "No se han agregado archivos.",
+            add_some_files: "Agrega algunos archivos.",
+            new_bundle_has_been_created: "Se creó un nuevo bundle",
+            name: "Nombre",
+            unnamed_bundle: "Bundle sin nombre",
+            bundle: "Bundle",
+            delete_bundle: "Borrar Bundle",
+            expand_bundle: "Ampliar Bundle",
+            collapse_bundle: "Plegar Bundle",
+            expand_collapse_bundle: "Ampliar/plegar bundle.",
+            no_persons_created_yet: "No se han creado aún personas.",
+            create_some_persons: "Crear personas.",
+            really_erase_bundle: "¿Está seguro?¿Desea borrar el bundle completo?",
+            yes_delete_bundle: "Si, borrar bundle",
+            bundle_deleted: "Bundle ha sido borrado definitivamente.",
+            no_bundles_have_been_created_yet: "No se han creado aún bundles.",
+            why_not_create_one__before_link: "Por qué no ",
+            why_not_create_one__link: "crea uno",
+            why_not_create_one__after_link: "?",
+            this_person_is_already_in_the_bundle: "Esta persona ya está en el bundle.",
+            unknown_file_problem__before_filename: "Advertencia.<br>No es claro si este archivo es un archivo multimedia o un recurso escrito:",
+            unknown_file_problem__after_filename: "Este archivo sera manejado como recurso escrito. Comprueba los archivos.",
+            bundle_name_taken_from_eaf: "Bundle name has been taken from EAF file name, since bundle has not been manually named yet.",
+            bundle_date_extracted_from_eaf_file_name: "La fecha del Bundle se ha extraída del archivo EAF",
+            at_least_2_bundles_to_assign_metadata: "There have to be at least 2 bundles to assign metadata from one to another.",
+            bundle_1_metadata_assigned_to_all_bundles: "Metadatos del primer Bundle ha sido asignados a todos los Bundles.",
+            this_function_is_currently_unavailable: "T¡Esta función no está disponible por el momento!",
+            no: "No",
+            yes_delete_form: "Si, borrar formulario",
+            really_reset_form: "¿Está seguro? <br/> ¿Desea reiniciar el formulario y eliminar todos los Bundles?",
+            form_reset: "Reiniciar formulario",
+            specify_local_used_language_name: "Especificar el nombre del idioma usado local",
+            object: "Objecto",
+            file_name: "Nombre del archivo",
+            size: "Tamaño",
+            copy_metadata: "Copiar Metadata",
+            from_bundle_1_to_all_others: "Desde Bundle 1 a todos los otros.",
+            from_2nd_last_to_last_bundle: "Del segundo último al último bundle",
+            elements_to_copy: "Elementos a copiar",
+            from_where_to_where: "De donde a donde",
+            metadata_copied: "Metadatos han sido copiados",
+            bundle_title_taken_from_eaf: "El título del Bundle se ha tomado del nombre de archivo de EAF, ya que no se ha nombrado manualmente todavía.",
+            overwrite_data_warning: "Deseas sobrescribir todos los datos?<br>Por favor has una copia de tus datos antes de continuar!",
+            create_id: "Generar ID",
+            bundle_get_generated_id: " bundle con nueva ID: ",
+            set_title_in_unnamed_bundles: "Por favor, establezca un título para el Bundle Nr: ",
+            bundle_gen_id: "ID"
+
+        },
+
+    }
 };

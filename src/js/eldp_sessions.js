@@ -201,7 +201,12 @@ eldp_environment.workflow[2] = (function() {
                 my.bundles.sortBySubKey("bundle", "name");
                 my.refresh();
             }
-        }];
+        },  {
+            label: l("environment", "signal_msg"),
+            icon: "textedit",
+            id: "environment_signal"
+            }
+        ];
     };
 
 

@@ -219,6 +219,11 @@ eldp_environment.workflow[1] = (function(){
 					APP.log(l("person_saved_and_duplicated"),"success");
 			
 				}
+			},
+			{
+				id: "environment_signal",
+				icon: "textedit",
+				label: l("signal_msg")
 			}
 		];
 	};

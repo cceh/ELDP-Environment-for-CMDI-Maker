@@ -430,7 +430,7 @@ eldp_environment.workflow[0] = (function(){
                 name: f.name,
                 mimeType: f.type || 'n/a',
                 size: strings.bytesToSize(f.size, 1),
-                lastModified: f.lastModifiedDate.toLocaleDateString(),
+                lastModified: f.lastModified
                 status: "stable"
             });
         }
